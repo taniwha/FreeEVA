@@ -55,9 +55,9 @@ namespace FreeEVA {
 			if (Input.GetKeyDown(KeyCode.F) && Input.GetKey(KeyCode.LeftAlt)) {
 				GameSettings.EVA_ROTATE_ON_MOVE = !GameSettings.EVA_ROTATE_ON_MOVE;
 				if (!GameSettings.EVA_ROTATE_ON_MOVE) {
-					ScreenMessages.PostScreenMessage ("FreeEVA enabled. Press space to reset orientation.");
+					ScreenMessages.PostScreenMessage ("FreeEVA enabled. Press space to reset orientation.", 3.0f, ScreenMessageStyle.UPPER_CENTER);
 				} else {
-					ScreenMessages.PostScreenMessage ("FreeEVA disabled.");
+					ScreenMessages.PostScreenMessage ("FreeEVA disabled.", 3.0f, ScreenMessageStyle.UPPER_CENTER);
 				}
 			}
 		}
