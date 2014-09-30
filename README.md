@@ -14,13 +14,13 @@ too (I am one)). The current status will be displayed for about three
 seconds in green in the upper center of the screen (like timewarp).
 
 Review of EVA controls (well known controls included for completeness):
-LeftAlt-F: Toggle free EVA mode (added by this mod)
-F: Interact with ladders/hatches.
-L: Toggle helmet lights.
-R: Toggle RCS (RCS must be on for /any/ of the following to work)
-W/S: Move forward/back
-A/D: Move left/right
-Q/E: Turn left/right (does not work when walking)
-left mouse button drag: trackball-rotate
-Space: Reset the kerbal's orientation: facing away from the camera with the
+* LeftAlt-F: Toggle free EVA mode (added by this mod)
+* F: Interact with ladders/hatches.
+* L: Toggle helmet lights.
+* R: Toggle RCS (RCS must be on for /any/ of the following to work)
+* W/S: Move forward/back
+* A/D: Move left/right
+* Q/E: Turn left/right (does not work when walking)
+* left mouse button drag: trackball-rotate
+* Space: Reset the kerbal's orientation: facing away from the camera with the
 kerbal's head pointing up. Also let go of a ladder or jump.
