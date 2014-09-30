@@ -37,7 +37,7 @@ using KSP.IO;
 namespace KerbalStats {
 
 	[KSPAddon(KSPAddon.Startup.Instantly, true)]
-	public class KSVersionReport : MonoBehaviour
+	public class FreeEVAVersionReport : MonoBehaviour
 	{
 		static string version = null;
 
