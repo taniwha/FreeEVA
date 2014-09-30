@@ -12,6 +12,10 @@ FrEVA_FILES := \
 	VersionReport.cs \
 	$e
 
+DOC_FILES := \
+	License.txt \
+	README.md
+
 RESGEN2		:= resgen2
 GMCS		:= gmcs
 GMCSFLAGS	:= -optimize -warnaserror
@@ -46,5 +50,6 @@ clean:
 install: all
 	mkdir -p ${PLUGINDIR}
 	cp ${TARGETS} ${PLUGINDIR}
+	cp ${DOC_FILES} ${FrEVAGAMEDATA}
 
 .PHONY: all clean install
