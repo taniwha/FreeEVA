@@ -8,6 +8,7 @@ TARGETS		:= FreeEVA.dll
 
 FrEVA_FILES := \
     AssemblyInfo.cs	\
+	Checkers.cs \
 	FreeEVA.cs \
 	VersionReport.cs \
 	$e

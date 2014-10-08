@@ -41,17 +41,26 @@ namespace FreeEVA {
 	{
 		void Awake ()
 		{
-			enabled = true;
+			if (!CompatibilityChecker.IsWin64 ()) {
+				enabled = true;
+			} else {
+				enabled = false;
+			}
 		}
 
-		void Start ()
+		void OnStart ()
 		{
 			// Reset to factory default on start (least surprise)
-			GameSettings.EVA_ROTATE_ON_MOVE = true;
+			if (CompatibilityChecker.IsWin64 ()) {
+				GameSettings.EVA_ROTATE_ON_MOVE = true;
+			}
 		}
 
 		void Update ()
 		{
+			if (CompatibilityChecker.IsWin64 ()) {
+				return;
+			}
 			if (Input.GetKeyDown(KeyCode.F) && Input.GetKey(KeyCode.LeftAlt)) {
 				GameSettings.EVA_ROTATE_ON_MOVE = !GameSettings.EVA_ROTATE_ON_MOVE;
 				if (!GameSettings.EVA_ROTATE_ON_MOVE) {
