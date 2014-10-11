@@ -37,7 +37,7 @@ using KSP.IO;
 namespace FreeEVA {
 
 	[KSPAddon (KSPAddon.Startup.Flight, false)]
-	public class ExSurveyTracker : MonoBehaviour
+	public class FreeEVA : MonoBehaviour
 	{
 		void Awake ()
 		{
