@@ -10,10 +10,13 @@ FrEVA_FILES := \
     AssemblyInfo.cs	\
 	Checkers.cs \
 	FreeEVA.cs \
+	Toolbar.cs \
+	ToolbarWrapper.cs \
 	VersionReport.cs \
 	$e
 
 DOC_FILES := \
+	FreeEVA.png \
 	License.txt \
 	README.md
 
@@ -24,7 +27,7 @@ GIT			:= git
 TAR			:= tar
 ZIP			:= zip
 
-all: version ${TARGETS}
+all: version ${TARGETS} FreeEVA.png
 
 .PHONY: version
 version:
@@ -45,8 +48,11 @@ FreeEVA.dll: ${FrEVA_FILES}
 		-r:Assembly-CSharp,Assembly-CSharp-firstpass,UnityEngine \
 		-out:$@ $^
 
+FreeEVA.png: FreeEVA.svg
+	inkscape --export-png $@ $^
+
 clean:
-	rm -f ${TARGETS} AssemblyInfo.cs
+	rm -f ${TARGETS} AssemblyInfo.cs FreeEVA.png
 
 install: all
 	mkdir -p ${PLUGINDIR}
