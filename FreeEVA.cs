@@ -39,6 +39,8 @@ namespace FreeEVA {
 	[KSPAddon (KSPAddon.Startup.Flight, false)]
 	public class FreeEVA : MonoBehaviour
 	{
+		internal static FreeEVA instance;
+
 		void Awake ()
 		{
 			if (!CompatibilityChecker.IsWin64 ()) {
@@ -46,6 +48,12 @@ namespace FreeEVA {
 			} else {
 				enabled = false;
 			}
+			instance = this;
+		}
+
+		void OnDestroy ()
+		{
+			instance = null;
 		}
 
 		void OnStart ()
@@ -56,18 +64,23 @@ namespace FreeEVA {
 			}
 		}
 
+		internal void Toggle ()
+		{
+			GameSettings.EVA_ROTATE_ON_MOVE = !GameSettings.EVA_ROTATE_ON_MOVE;
+			if (!GameSettings.EVA_ROTATE_ON_MOVE) {
+				ScreenMessages.PostScreenMessage ("FreeEVA enabled. Press space to reset orientation.", 3.0f, ScreenMessageStyle.UPPER_CENTER);
+			} else {
+				ScreenMessages.PostScreenMessage ("FreeEVA disabled.", 3.0f, ScreenMessageStyle.UPPER_CENTER);
+			}
+		}
+
 		void Update ()
 		{
 			if (CompatibilityChecker.IsWin64 ()) {
 				return;
 			}
 			if (Input.GetKeyDown(KeyCode.F) && Input.GetKey(KeyCode.LeftAlt)) {
-				GameSettings.EVA_ROTATE_ON_MOVE = !GameSettings.EVA_ROTATE_ON_MOVE;
-				if (!GameSettings.EVA_ROTATE_ON_MOVE) {
-					ScreenMessages.PostScreenMessage ("FreeEVA enabled. Press space to reset orientation.", 3.0f, ScreenMessageStyle.UPPER_CENTER);
-				} else {
-					ScreenMessages.PostScreenMessage ("FreeEVA disabled.", 3.0f, ScreenMessageStyle.UPPER_CENTER);
-				}
+				Toggle ();
 			}
 		}
 	}
