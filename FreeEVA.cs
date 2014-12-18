@@ -41,6 +41,9 @@ namespace FreeEVA {
 	{
 		internal static FreeEVA instance;
 
+		static bool settings_loaded = false;
+		static KeyCode keycode = KeyCode.F;
+
 		void Awake ()
 		{
 			if (!CompatibilityChecker.IsWin64 ()) {
@@ -56,11 +59,31 @@ namespace FreeEVA {
 			instance = null;
 		}
 
+		void LoadSettings ()
+		{
+			settings_loaded = true;
+
+			var dbase = GameDatabase.Instance;
+			var settings = dbase.GetConfigNodes ("FreeEVASettings").LastOrDefault ();
+			if (settings == null) {
+				print("FreeEVA settings not found");
+				return;
+			}
+			if (settings.HasValue ("Toggle_KeyCode")) {
+				print("FreeEVA Toggle_KeyCode");
+				var kc = settings.GetValue ("Toggle_KeyCode");
+				keycode = (KeyCode) Enum.Parse(typeof(KeyCode), kc);
+			}
+		}
+
 		void Start ()
 		{
 			// Reset to factory default on start (least surprise)
 			if (CompatibilityChecker.IsWin64 ()) {
 				GameSettings.EVA_ROTATE_ON_MOVE = true;
+			}
+			if (!settings_loaded) {
+				LoadSettings ();
 			}
 		}
 
@@ -79,7 +102,7 @@ namespace FreeEVA {
 			if (CompatibilityChecker.IsWin64 ()) {
 				return;
 			}
-			if (Input.GetKeyDown(KeyCode.F) && Input.GetKey(KeyCode.LeftAlt)) {
+			if (Input.GetKeyDown(keycode) && Input.GetKey(KeyCode.LeftAlt)) {
 				Toggle ();
 			}
 		}
