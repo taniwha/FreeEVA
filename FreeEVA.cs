@@ -56,7 +56,7 @@ namespace FreeEVA {
 			instance = null;
 		}
 
-		void OnStart ()
+		void Start ()
 		{
 			// Reset to factory default on start (least surprise)
 			if (CompatibilityChecker.IsWin64 ()) {
