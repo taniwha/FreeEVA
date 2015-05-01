@@ -52,12 +52,10 @@ namespace FreeEVA {
 				enabled = false;
 			}
 			instance = this;
-			GameEvents.onVesselGoOffRails.Add (onVesselGoOffRails);
 		}
 
 		void OnDestroy ()
 		{
-			GameEvents.onVesselGoOffRails.Remove (onVesselGoOffRails);
 			instance = null;
 		}
 
@@ -66,18 +64,6 @@ namespace FreeEVA {
 			bevent.guiActiveUnfocused = true;
 			bevent.externalToEVAOnly = true;
 			bevent.unfocusedRange = 1.5f;
-		}
-
-		void onVesselGoOffRails (Vessel v)
-		{
-			for (int i = 0; i < v.parts.Count; i++) {
-				Part part = v.parts[i];
-				var science = part.Modules.OfType<ModuleScienceExperiment> ();
-				foreach (var experiment in science) {
-					EnableEvent (experiment.Events["DeployExperiment"]);
-					EnableEvent (experiment.Events["ReviewDataEvent"]);
-				}
-			}
 		}
 
 		void LoadSettings ()
