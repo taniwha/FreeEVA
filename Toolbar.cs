@@ -44,7 +44,9 @@ namespace FreeEVA {
 
 		void OnDestroy()
 		{
-			button.Destroy ();
+			if (button != null) {
+				button.Destroy ();
+			}
 		}
 	}
 }
