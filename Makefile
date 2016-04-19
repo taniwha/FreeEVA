@@ -21,7 +21,7 @@ DOC_FILES := \
 	README.md
 
 RESGEN2		:= resgen2
-GMCS		:= gmcs
+GMCS		:= mcs
 GMCSFLAGS	:= -optimize -warnaserror
 GIT			:= git
 TAR			:= tar
@@ -45,7 +45,9 @@ info:
 
 FreeEVA.dll: ${FrEVA_FILES}
 	${GMCS} ${GMCSFLAGS} -t:library -lib:${MANAGED} \
-		-r:Assembly-CSharp,Assembly-CSharp-firstpass,UnityEngine \
+		-r:Assembly-CSharp,Assembly-CSharp-firstpass \
+		-r:UnityEngine \
+		-r:KSPUtil \
 		-out:$@ $^
 
 FreeEVA.png: FreeEVA.svg
