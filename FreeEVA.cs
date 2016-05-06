@@ -46,11 +46,7 @@ namespace FreeEVA {
 
 		void Awake ()
 		{
-			if (!CompatibilityChecker.IsWin64 ()) {
-				enabled = true;
-			} else {
-				enabled = false;
-			}
+			enabled = true;
 			instance = this;
 		}
 
@@ -85,10 +81,6 @@ namespace FreeEVA {
 
 		void Start ()
 		{
-			// Reset to factory default on start (least surprise)
-			if (CompatibilityChecker.IsWin64 ()) {
-				GameSettings.EVA_ROTATE_ON_MOVE = true;
-			}
 			if (!settings_loaded) {
 				LoadSettings ();
 			}
@@ -106,9 +98,6 @@ namespace FreeEVA {
 
 		void Update ()
 		{
-			if (CompatibilityChecker.IsWin64 ()) {
-				return;
-			}
 			if (Input.GetKeyDown(keycode) && Input.GetKey(KeyCode.LeftAlt)) {
 				Toggle ();
 			}

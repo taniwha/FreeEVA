@@ -30,9 +30,6 @@ namespace FreeEVA {
 
 		public void Awake ()
 		{
-			if (CompatibilityChecker.IsWin64 ()) {
-				return;
-			}
 			if (ToolbarManager.Instance == null) {
 				return;
 			}
